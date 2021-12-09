@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "BookList.Entities": {
+      "commandName": "Project"
+    },
+    "BookList.WebUI": {
+      "commandName": "Project"
+    }
+  }
+}

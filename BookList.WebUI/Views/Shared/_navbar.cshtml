@@ -1,0 +1,71 @@
+﻿<nav class="navigation" id="navigation">
+    <div class="container">
+        <div><a id="logo" asp-controller="Home" asp-action="Index" class="logo">BOOKLİST</a> </div>
+
+        <ul class="navigation-links ml-auto">
+
+            @if (User.Identity.IsAuthenticated)
+            {
+
+                <li class="nav-item">
+                    <a asp-controller="Shop" asp-action="List" class="nav-link" style="color: #888">Ürünler</a>
+                </li>
+                <li class="nav-item">
+                    <a asp-controller="Cart" asp-action="Index" class="nav-link" style="color: #888">Sepet &nbsp;<i class="fa fa-shopping-basket" aria-hidden="true"></i></a>
+                </li>
+              
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" asp-controller="Account" asp-action="Manage" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: #888">
+                        @User.Identity.Name
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" asp-controller="Account" asp-action="Logout">Çıkış Yap</a>
+
+                    </div>
+                </li>
+
+                if (User.IsInRole("admin"))
+                {
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" asp-controller="Account" asp-action="Manage" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: #888">
+                            Admin Paneli
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a asp-controller="Admin" asp-action="CreateProduct" class="dropdown-item">Ürün Ekle</a>
+                            <a asp-controller="Admin" asp-action="ProductList" class="dropdown-item">Admin-Ürünler</a>
+                            <a asp-controller="Admin" asp-action="CreateCategory" class="dropdown-item">Kategori Ekle</a>
+                            <a asp-controller="Admin" asp-action="CategoryList" class="dropdown-item">Admin-Kategoriler</a>
+                        </div>
+                    </li>
+                }
+
+            }
+            else
+            {
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: #888">
+                        Giriş Yap &nbsp;<i class="fa fa-user-o" aria-hidden="true"></i>
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" asp-controller="Account" asp-action="Login">Giriş Yap &nbsp;<i class="fa fa-user-o" aria-hidden="true"></i></a>
+                        <a class="dropdown-item" asp-controller="Account" asp-action="Register">Üye Ol</a>
+
+                    </div>
+                </li>
+
+                <li class="nav-item">
+                    <a asp-controller="Shop" asp-action="List" class="nav-link" style="color: #888">Ürünler</a>
+                </li>
+
+
+            }
+
+
+            <a href="javascript:void(0);" class="icon" onclick="responsiveMenu()">
+                <i class="fa fa-bars"></i>
+            </a>
+
+        </ul>
+
+    </div>
+</nav>
